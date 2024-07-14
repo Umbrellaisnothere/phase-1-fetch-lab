@@ -1,17 +1,18 @@
+// To pass the tests, don't forget to return your fetch!
 function fetchBooks() {
-  // To pass the tests, don't forget to return your fetch!
   
-}
+  // We make a fetch request 
+  return fetch("https://anapioficeandfire.com/api/books")
+  .then((res) => res.json())
+  .then ((data) => {
 
-function renderBooks(books) {
-  const main = document.querySelector('main');
-  books.forEach(book => {
-    const h2 = document.createElement('h2');
-    h2.innerHTML = book.name;
-    main.appendChild(h2);
-  });
+    renderBooks(data);
+  })
 }
-
+function renderBooks(booksData) {
+const bookTitles = booksData.map((book) => book.name);
+console.log("List of Book Titles:", bookTitles);
+}
 document.addEventListener('DOMContentLoaded', function() {
-  fetchBooks();
+fetchBooks();
 });
